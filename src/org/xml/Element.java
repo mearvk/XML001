@@ -7,6 +7,8 @@ public class Element extends Node
 {
     public String name;
 
+    public Namespace namespace = new Namespace();
+
     public Textnode textnode = new Textnode();
 
     public Elements children = new Elements();
@@ -20,11 +22,100 @@ public class Element extends Node
         this.name = name;
     }
 
+    public Element(String name, Namespace namespace)
+    {
+        this.name = name;
+
+        this.namespace = namespace;
+    }
+
     //
 
-    public Element setId(String value)
+    public Attribute getAttribute(String name)
     {
-        this.attributes.add(new Attribute("id", value));
+        Attribute attribute;
+
+        for(int i=0; i<this.attributes.size(); i++)
+        {
+            attribute = this.attributes.get(i);
+
+            if(attribute.name.equals(name))
+            {
+                return attribute;
+            }
+        }
+
+        return null;
+    }
+
+    public Attributes getAttributes(String name)
+    {
+        Attribute attribute;
+
+        Attributes attributes = new Attributes();
+
+        for(int i=0; i<this.attributes.size(); i++)
+        {
+            if(name.equals((attribute = this.attributes.get(i)).name))
+            {
+                attributes.add(attribute);
+            }
+        }
+
+        return attributes;
+    }
+
+    public Element getChild(String tagname)
+    {
+        Element element = null;
+
+        for(int i=0; i<this.children.size(); i++)
+        {
+            if(tagname.equals((element = children.get(i)).name))
+            {
+                return element;
+            }
+        }
+
+        return null;
+    }
+
+    public Elements getChildren(String tagname)
+    {
+        Element element;
+
+        Elements elements = new Elements();
+
+        for(int i=0; i<this.children.size(); i++)
+        {
+            if(tagname.equals((element = this.children.get(i)).name))
+            {
+                elements.add(element);
+            }
+        }
+
+        return elements;
+    }
+
+    public Elements getChildren()
+    {
+        return children;
+    }
+
+    public Attributes getAttributes()
+    {
+        return attributes;
+    }
+
+    public Textnode getTextnode()
+    {
+        return textnode;
+    }
+
+
+    public Element setId(Attribute attribute)
+    {
+        this.attributes.add(new Attribute("id", attribute.value));
 
         return this;
     }
@@ -64,7 +155,6 @@ public class Element extends Node
         return elements;
     }
 
-
     public Element addElement(Element element, Attributes attributes)
     {
         this.children.add(element);
@@ -72,6 +162,11 @@ public class Element extends Node
         this.attributes.addAll(attributes);
 
         return this;
+    }
+
+    public boolean hasNamespace()
+    {
+        return this.namespace.size()>0;
     }
 
     public boolean hasTextnode()

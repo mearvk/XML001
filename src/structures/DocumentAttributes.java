@@ -2,7 +2,7 @@ package structures;
 
 import java.util.ArrayList;
 
-public class DocumentAttributes<XMLDocumentAttribute> extends ArrayList<XMLDocumentAttribute>
+public class DocumentAttributes
 {
-
+    ArrayList<DocumentAttribute> attributes = new ArrayList<DocumentAttribute>();
 }

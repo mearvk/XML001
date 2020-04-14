@@ -33,7 +33,9 @@ public class Document
         this.root = root;
     }
 
-    public String rend()
+    //
+
+    public String decorate()
     {
         String xml;
 

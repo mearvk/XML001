@@ -1,6 +1,8 @@
 package xml;
 
+import io.Writer;
 import org.xml.*;
+import structures.Elements;
 
 import java.io.FileWriter;
 
@@ -67,7 +69,7 @@ public class XMLHarness
 
                 writer = new FileWriter("C:\\Users\\Mr. Max Rupplin\\Desktop\\xml\\output.xml");
 
-                writer.write(document.rend());
+                writer.write(document.decorate());
 
                 writer.flush();
 
@@ -77,7 +79,7 @@ public class XMLHarness
             }
             catch (Exception e)
             {
-                e.printStackTrace();
+                System.err.println(e);
             }
         }
     }
@@ -173,7 +175,7 @@ public class XMLHarness
 
                 writer = new FileWriter("C:\\Users\\Mr. Max Rupplin\\Desktop\\xml\\output.xml");
 
-                writer.write(document.rend());
+                writer.write(document.decorate());
 
                 writer.flush();
 
@@ -183,7 +185,7 @@ public class XMLHarness
             }
             catch (Exception e)
             {
-
+                System.err.println(e);
             }
         }
     }
@@ -294,7 +296,7 @@ public class XMLHarness
 
                 writer = new FileWriter("C:\\Users\\Mr. Max Rupplin\\Desktop\\xml\\output.xml");
 
-                writer.write(document.rend());
+                writer.write(document.decorate());
 
                 writer.flush();
 
@@ -304,7 +306,7 @@ public class XMLHarness
             }
             catch (Exception e)
             {
-
+                System.err.println(e);
             }
         }
     }
@@ -390,8 +392,6 @@ public class XMLHarness
 
                 column04.addAttribute(new Attribute("name","descriptor"));
 
-                column04.setId("04");
-
                 column05.addAttribute(new Attribute("name","descriptor"));
 
                 column06.addAttribute(new Attribute("name","descriptor"));
@@ -417,7 +417,7 @@ public class XMLHarness
 
                 writer = new FileWriter("C:\\Users\\Mr. Max Rupplin\\Desktop\\xml\\output.xml");
 
-                writer.write(document.rend());
+                writer.write(document.decorate());
 
                 writer.flush();
 
@@ -427,7 +427,7 @@ public class XMLHarness
             }
             catch (Exception e)
             {
-
+                System.err.println(e);
             }
         }
     }
@@ -436,7 +436,116 @@ public class XMLHarness
     {
         public Test005()
         {
-            Document document = new Document();
+            try
+            {
+                Document document;
+
+                Element users;
+
+                Element user01, user02, user03;
+
+                Element firstname01, firstname02, firstname03;
+
+                Element lastname01, lastname02, lastname03;
+
+                Element occupation01, occupation02, occupation03;
+
+
+                document = new Document(new Root("users"));
+
+                //
+
+                user01 = document.root.addElement(new Element("user"));
+
+                user02 = document.root.addElement(new Element("user"));
+
+                user03 = document.root.addElement(new Element("user"));
+
+                //
+
+                user01 = user01.setId(new Attribute("01"));
+
+                user02 = user02.setId(new Attribute("02"));
+
+                user03 = user03.setId(new Attribute("03"));
+
+                //
+
+                user01.addElement(firstname01 = new Element("firstname"));
+
+                user01.addElement(lastname01 = new Element("lastname"));
+
+                user01.addElement(occupation01 = new Element("occupation"));
+
+                //
+
+                user02.addElement(firstname02 = new Element("firstname"));
+
+                user02.addElement(lastname02 = new Element("lastname"));
+
+                user02.addElement(occupation02 = new Element("occupation"));
+
+                //
+
+                user03.addElement(firstname03 = new Element("firstname"));
+
+                user03.addElement(lastname03 = new Element("lastname"));
+
+                user03.addElement(occupation03 = new Element("occupation"));
+
+                //
+
+                firstname01.addTextnode(new Textnode("Peter"));
+
+                firstname02.addTextnode(new Textnode("Martin"));
+
+                firstname03.addTextnode(new Textnode("Lucy"));
+
+                //
+
+                lastname01.addTextnode(new Textnode("Brown"));
+
+                lastname02.addTextnode(new Textnode("Smith"));
+
+                lastname03.addTextnode(new Textnode("Gordon"));
+
+                //
+
+                occupation01.addTextnode(new Textnode("Programmer"));
+
+                occupation02.addTextnode(new Textnode("Accountant"));
+
+                occupation03.addTextnode(new Textnode("Teacher"));
+
+                //
+
+                Writer writer = new Writer(document, "C:\\Users\\Mr. Max Rupplin\\Desktop\\xml\\output.xml");
+                
+                //
+                
+                Elements elements = document.root.getChildren();
+                
+                for(int i=0; i<elements.size(); i++)
+                {
+                    Element element = elements.get(i);
+
+                    Textnode fname = element.getChild("firstname").getTextnode();
+
+                    Textnode lname = element.getChild("lastname").getTextnode();
+
+                    Textnode occup = element.getChild("occupation").getTextnode();
+
+                    System.out.println("First name >> " + fname.value);
+
+                    System.out.println("Last name  >> " + lname.value);
+
+                    System.out.println("Occupation >> " + occup.value+"\n");
+                }
+            }
+            catch (Exception e)
+            {
+                System.err.println(e);
+            }
         }
     }
 
@@ -444,7 +553,72 @@ public class XMLHarness
     {
         public Test006()
         {
-            Document document = new Document();
+            try
+            {
+                Document document;
+
+                Element users;
+
+                Element table01, table02;
+
+                Element tr01;
+
+                Element td01, td02;
+
+                Element name01;
+
+                Element width01;
+
+                Element length01;
+
+                //
+
+                document = new Document();
+
+                //
+
+                table01 = document.root.addElement(new Element("table", new Namespace("h","http://www.w3.org/TR/html4/")));
+
+                table02 = document.root.addElement(new Element("table", new Namespace("f","https://www.w3schools.com/furniture")));
+
+                //
+
+                tr01 = table01.addElement(tr01 = new Element("tr"));
+
+                td01 = tr01.addElement(td01 = new Element("td"));
+
+                td02 = tr01.addElement(td02 = new Element("td"));
+
+                //
+
+                td01.addTextnode(new Textnode("Apples"));
+
+                td02.addTextnode(new Textnode("Bananas"));
+
+                //
+
+                name01 = table02.addElement(name01 = new Element("name"));
+
+                width01 = table02.addElement(width01 = new Element("width"));
+
+                length01 = table02.addElement(length01 = new Element("length"));
+
+                //
+
+                name01.addTextnode(new Textnode("African Coffee Table"));
+
+                width01.addTextnode(new Textnode("80"));
+
+                length01.addTextnode(new Textnode("120"));
+
+                //
+
+                Writer writer = new Writer(document, "C:\\Users\\Mr. Max Rupplin\\Desktop\\xml\\output.xml");
+            }
+            catch (Exception e)
+            {
+                System.err.println(e);
+            }
         }
     }
 }

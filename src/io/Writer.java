@@ -7,15 +7,15 @@ import java.io.IOException;
 
 public class Writer
 {
-    public Writer(Document document, String Url)
+    public Writer(Document document, String url)
     {
         FileWriter writer;
 
         try
         {
-            writer = new FileWriter(Url);
+            writer = new FileWriter(url);
 
-            writer.write(document.rend());
+            writer.write(document.decorate());
 
             writer.flush();
 
