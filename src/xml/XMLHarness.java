@@ -113,6 +113,15 @@ public class XMLHarness
 
                 table03 = tables.addElement(new Element("table"));
 
+                //
+
+                table01.addAttribute(new Attribute("id","01"));
+
+                table02.addAttribute(new Attribute("id","02"));
+
+                table03.addAttribute(new Attribute("id","03"));
+
+                //
 
                 column01 = table01.addElement(column01 = new Element("column"));
 
@@ -139,6 +148,14 @@ public class XMLHarness
 
                 //
 
+                column04.addAttribute(new Attribute("name","descriptor"));
+
+                column05.addAttribute(new Attribute("name","descriptor"));
+
+                column06.addAttribute(new Attribute("name","descriptor"));
+
+                //
+
                 column07 = table03.addElement(column07 = new Element("column"));
 
                 column08 = table03.addElement(column08 = new Element("column"));
@@ -146,6 +163,12 @@ public class XMLHarness
                 column09 = table03.addElement(column09 = new Element("column"));
 
                 //
+
+                column07.addAttribute(new Attribute("name","descriptor"));
+
+                column08.addAttribute(new Attribute("name","descriptor"));
+
+                column09.addAttribute(new Attribute("name","descriptor"));
 
 
                 FileWriter writer;
