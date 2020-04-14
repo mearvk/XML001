@@ -22,6 +22,13 @@ public class Element extends Node
 
     //
 
+    public Element setId(String value)
+    {
+        this.attributes.add(new Attribute("id", value));
+
+        return this;
+    }
+
     public Element addTextnode(Textnode textnode)
     {
         this.textnode = textnode;

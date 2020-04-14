@@ -17,5 +17,6 @@ public class Main
         XMLHarness.Test005 test005 = new XMLHarness.Test005();
 
         XMLHarness.Test006 test006 = new XMLHarness.Test006();
+
     }
 }

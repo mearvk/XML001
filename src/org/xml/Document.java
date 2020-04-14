@@ -18,6 +18,11 @@ public class Document
         this.root = new Root();
     }
 
+    public Document(Root root)
+    {
+        this.root = root;
+    }
+
     public Document(Root root, Attributes attributes)
     {
         this.root = root;
@@ -28,7 +33,7 @@ public class Document
         this.root = root;
     }
 
-    public String rendAsXML()
+    public String rend()
     {
         String xml;
 
