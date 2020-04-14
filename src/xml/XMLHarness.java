@@ -124,9 +124,9 @@ public class XMLHarness
 
                 column01.addAttribute(new Attribute("name","descriptor"));
 
-                column01.addAttribute(new Attribute("name","descriptor"));
+                column02.addAttribute(new Attribute("name","descriptor"));
 
-                column01.addAttribute(new Attribute("name","descriptor"));
+                column03.addAttribute(new Attribute("name","descriptor"));
 
 
                 //

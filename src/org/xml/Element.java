@@ -62,4 +62,9 @@ public class Element extends Node
     {
         return this.children.size()>0;
     }
+
+    public boolean hasAttributes()
+    {
+        return this.attributes.size()>0;
+    }
 }

@@ -56,7 +56,21 @@ public class Document
     {
         depth++;
 
-        string = "<"+element.name +">\n";
+        string = "<"+element.name ;
+
+        if(element.hasAttributes())
+        {
+            for(int i=0; i<element.attributes.size(); i++)
+            {
+                Attribute attribute;
+
+                attribute = element.attributes.get(i);
+
+                string += " "+attribute.name +"=\""+attribute.value+"\"";
+            }
+        }
+
+        string = string + ">\n";
 
         if(element.hasChildren())
         {
