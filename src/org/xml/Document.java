@@ -1,12 +1,7 @@
 package org.xml;
 
-import org.apache.commons.lang3.StringUtils;
 import structures.Attributes;
 import structures.DocumentAttributes;
-
-import java.io.BufferedReader;
-import java.io.StringReader;
-import java.util.Stack;
 
 public class Document
 {
@@ -14,7 +9,9 @@ public class Document
 
     public Attributes attributes;
 
-    public DocumentAttributes docattributes;
+    public DocumentAttributes document_attributes;
+
+    //
 
     public Document()
     {
@@ -52,11 +49,11 @@ public class Document
         return string;
     }
 
-    protected String traverseXML(Element element, String string, Integer depth)
+    protected String traverseXML(Element element, String string, Integer breadth)
     {
-        depth++;
+        breadth++;
 
-        string = "<"+element.name ;
+        string = "<"+element.name;
 
         if(element.hasAttributes())
         {
@@ -66,20 +63,25 @@ public class Document
 
                 attribute = element.attributes.get(i);
 
-                string += " "+attribute.name +"=\""+attribute.value+"\"";
+                string = string + " "+attribute.name +"=\""+attribute.value+"\"";
             }
         }
 
         string = string + ">\n";
 
+        if(element.hasTextnode())
+        {
+            string = string + indent(breadth) + element.textnode.value+"\n";
+        }
+
         if(element.hasChildren())
         {
             for(int i=0; i<element.children.size(); i++)
             {
-                string += indent(depth) + traverseXML(element.children.get(i), element.name, depth);
+                string = string + indent(breadth) + traverseXML(element.children.get(i), element.name, breadth);
             }
         }
 
-        return string + indent(depth-1) + "</"+element.name +">\n";
+        return string + indent(breadth-1) + "</"+element.name +">\n";
     }
 }

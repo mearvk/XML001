@@ -7,6 +7,8 @@ public class Element extends Node
 {
     public String name;
 
+    public Textnode textnode = new Textnode();
+
     public Elements children = new Elements();
 
     public Attributes attributes = new Attributes();
@@ -19,6 +21,13 @@ public class Element extends Node
     }
 
     //
+
+    public Element addTextnode(Textnode textnode)
+    {
+        this.textnode = textnode;
+
+        return this;
+    }
 
     public Element addAttributes(Attributes attributes)
     {
@@ -56,6 +65,11 @@ public class Element extends Node
         this.attributes.addAll(attributes);
 
         return this;
+    }
+
+    public boolean hasTextnode()
+    {
+        return this.textnode.size()>0;
     }
 
     public boolean hasChildren()
