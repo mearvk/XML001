@@ -21,7 +21,7 @@ public class Namespace
 
         this.uri = uri;
 
-        //this.inheritor = inheritor;
+        this.inheritor = inheritor;
     }
 
     public Namespace(String prefix, String uri)

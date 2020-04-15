@@ -637,6 +637,9 @@ public class XMLHarness
 
                 Element column01, column02, column03;
 
+                Element value01, value02, value03;
+
+
                 //
 
                 document = new Document(new Root("tables"));
@@ -683,11 +686,19 @@ public class XMLHarness
 
                 //
 
-                column01 = table03.addElement(column01 = new Element("column01"));
+                column01 = table03.addElement(column01 = new Element("column"));
 
-                column02 = table03.addElement(column02 = new Element("column02"));
+                column02 = table03.addElement(column02 = new Element("column"));
 
-                column03 = table03.addElement(column03 = new Element("column03"));
+                column03 = table03.addElement(column03 = new Element("column"));
+
+                //
+
+                value01 = table03.addElement(value01 = new Element("value"));
+
+                value02 = table03.addElement(value02 = new Element("value"));
+
+                value03 = table03.addElement(value03 = new Element("value"));
 
                 //
 
