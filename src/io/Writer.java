@@ -15,7 +15,7 @@ public class Writer
         {
             writer = new FileWriter(url);
 
-            writer.write(document.decorate());
+            writer.write(document.toXML());
 
             writer.flush();
 

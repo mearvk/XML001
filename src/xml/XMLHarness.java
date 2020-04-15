@@ -69,7 +69,7 @@ public class XMLHarness
 
                 writer = new FileWriter("C:\\Users\\Mr. Max Rupplin\\Desktop\\xml\\output.xml");
 
-                writer.write(document.decorate());
+                writer.write(document.toXML());
 
                 writer.flush();
 
@@ -175,7 +175,7 @@ public class XMLHarness
 
                 writer = new FileWriter("C:\\Users\\Mr. Max Rupplin\\Desktop\\xml\\output.xml");
 
-                writer.write(document.decorate());
+                writer.write(document.toXML());
 
                 writer.flush();
 
@@ -296,7 +296,7 @@ public class XMLHarness
 
                 writer = new FileWriter("C:\\Users\\Mr. Max Rupplin\\Desktop\\xml\\output.xml");
 
-                writer.write(document.decorate());
+                writer.write(document.toXML());
 
                 writer.flush();
 
@@ -417,7 +417,7 @@ public class XMLHarness
 
                 writer = new FileWriter("C:\\Users\\Mr. Max Rupplin\\Desktop\\xml\\output.xml");
 
-                writer.write(document.decorate());
+                writer.write(document.toXML());
 
                 writer.flush();
 
@@ -573,17 +573,19 @@ public class XMLHarness
 
                 //
 
-                document = new Document();
+                document = new Document(new Root("tables"));
 
                 //
 
-                table01 = document.root.addElement(new Element("table", new Namespace("h","http://www.w3.org/TR/html4/")));
+                table01 = document.root.addElement(table01 = new Element("table", new Namespace("a","http://www.w3.org/TR/html4/")));
 
-                table02 = document.root.addElement(new Element("table", new Namespace("f","https://www.w3schools.com/furniture")));
+                table02 = document.root.addElement(table02 = new Element("table", new Namespace("b","https://www.w3schools.com/furniture")));
 
                 //
 
                 tr01 = table01.addElement(tr01 = new Element("tr"));
+
+                //
 
                 td01 = tr01.addElement(td01 = new Element("td"));
 

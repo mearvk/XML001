@@ -9,6 +9,8 @@ public class Element extends Node
 
     public Namespace namespace = new Namespace();
 
+    public Boolean namespaceroot = false;
+
     public Textnode textnode = new Textnode();
 
     public Elements children = new Elements();
@@ -27,6 +29,8 @@ public class Element extends Node
         this.name = name;
 
         this.namespace = namespace;
+
+        this.namespaceroot = true;
     }
 
     //
@@ -97,6 +101,11 @@ public class Element extends Node
         return elements;
     }
 
+    public Element childAt(int index)
+    {
+        return this.children.get(index);
+    }
+
     public Elements getChildren()
     {
         return children;
@@ -112,6 +121,12 @@ public class Element extends Node
         return textnode;
     }
 
+    public Element setNamespace(Namespace namespace)
+    {
+        this.namespace = namespace;
+
+        return this;
+    }
 
     public Element setId(Attribute attribute)
     {
@@ -162,6 +177,11 @@ public class Element extends Node
         this.attributes.addAll(attributes);
 
         return this;
+    }
+
+    public boolean hasNamespaceRoot()
+    {
+        return this.namespaceroot;
     }
 
     public boolean hasNamespace()
