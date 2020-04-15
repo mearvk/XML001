@@ -534,12 +534,6 @@ public class XMLHarness
                     Textnode lname = element.getChild("lastname").getTextnode();
 
                     Textnode occup = element.getChild("occupation").getTextnode();
-
-                    System.out.println("First name >> " + fname.value);
-
-                    System.out.println("Last name  >> " + lname.value);
-
-                    System.out.println("Occupation >> " + occup.value+"\n");
                 }
             }
             catch (Exception e)
@@ -549,12 +543,9 @@ public class XMLHarness
         }
     }
 
-    public static class Test006
-    {
-        public Test006()
-        {
-            try
-            {
+    public static class Test006 {
+        public Test006() {
+            try {
                 Document document;
 
                 Element users;
@@ -577,9 +568,9 @@ public class XMLHarness
 
                 //
 
-                table01 = document.root.addElement(table01 = new Element("table", new Namespace("a","http://www.w3.org/TR/html4/")));
+                table01 = document.root.addElement(table01 = new Element("table", new Namespace("a", "http://www.w3.org/TR/html4/")));
 
-                table02 = document.root.addElement(table02 = new Element("table", new Namespace("b","https://www.w3schools.com/furniture")));
+                table02 = document.root.addElement(table02 = new Element("table", new Namespace("b", "https://www.w3schools.com/furniture")));
 
                 //
 
@@ -587,7 +578,7 @@ public class XMLHarness
 
                 //
 
-                td01 = tr01.addElement(td01 = new Element("td"));
+                td01 = tr01.addElement(td01 = new Element("td", new Namespace("c", "jgp://mearvk.org/projects")));
 
                 td02 = tr01.addElement(td02 = new Element("td"));
 
@@ -623,4 +614,90 @@ public class XMLHarness
             }
         }
     }
+
+    public static class Test007
+    {
+        public Test007()
+        {
+            try
+            {
+                Document document;
+
+                Element table01, table02, table03;
+
+                Element tr01;
+
+                Element td01, td02;
+
+                Element name01;
+
+                Element width01;
+
+                Element length01;
+
+                Element column01, column02, column03;
+
+                //
+
+                document = new Document(new Root("tables"));
+
+                //
+
+                table01 = document.root.addElement(table01 = new Element("table", new Namespace("a", "http://www.w3.org/TR/html4/")));
+
+                table02 = document.root.addElement(table02 = new Element("table", new Namespace("b", "https://www.w3schools.com/furniture")));
+
+                table03 = document.root.addElement(table03 = new Element("table"));
+
+                //
+
+                tr01 = table01.addElement(tr01 = new Element("tr"));
+
+                //
+
+                td01 = tr01.addElement(td01 = new Element("td", new Namespace("c", "https://mearvk.org/projects")));
+
+                td02 = tr01.addElement(td02 = new Element("td"));
+
+                //
+
+                td01.addTextnode(new Textnode("Apples"));
+
+                td02.addTextnode(new Textnode("Bananas"));
+
+                //
+
+                name01 = table02.addElement(name01 = new Element("name"));
+
+                width01 = table02.addElement(width01 = new Element("width"));
+
+                length01 = table02.addElement(length01 = new Element("length"));
+
+                //
+
+                name01.addTextnode(new Textnode("African Coffee Table"));
+
+                width01.addTextnode(new Textnode("80"));
+
+                length01.addTextnode(new Textnode("120"));
+
+                //
+
+                column01 = table03.addElement(column01 = new Element("column01"));
+
+                column02 = table03.addElement(column02 = new Element("column02"));
+
+                column03 = table03.addElement(column03 = new Element("column03"));
+
+                //
+
+                Writer writer = new Writer(document, "C:\\Users\\Mr. Max Rupplin\\Desktop\\xml\\output.xml");
+            }
+            catch (Exception e)
+            {
+                System.err.println(e);
+            }
+        }
+    }
 }
+

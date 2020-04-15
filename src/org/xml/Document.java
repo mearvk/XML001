@@ -60,7 +60,7 @@ public class Document
     {
         breadth++;
 
-        if(element.hasNamespaceRoot())
+        if(element.isNamespaceRoot())
         {
             string = "<"+element.namespace.prefix+":"+element.name+" xmlns:"+element.namespace.prefix+"=\""+element.namespace.uri+"\"";
         }
@@ -102,9 +102,9 @@ public class Document
 
                 if(element.hasNamespace())
                 {
-                    if(!child.hasNamespaceRoot())
+                    if(child.isNotNamespaceRoot())
                     {
-                        child = child.setNamespace(new Namespace(element.namespace.prefix, element.namespace.uri));
+                        child = child.setInheritedNamespace(new Namespace(element.namespace.prefix, element.namespace.uri, true));
                     }
                 }
 
