@@ -670,7 +670,7 @@ public class XMLHarness
 
                 //
 
-                name01 = table02.addElement(name01 = new Element("name", new Namespace("e", "https://www.benkat.org")));
+                name01 = table02.addElement(name01 = new Element("name", new Namespace("e", "https://org.namespace.venkat.java")));
 
                 width01 = table02.addElement(width01 = new Element("width"));
 
