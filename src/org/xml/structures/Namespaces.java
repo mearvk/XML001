@@ -1,4 +1,4 @@
-package structures;
+package org.xml.structures;
 
 import org.xml.Namespace;
 

@@ -1,10 +1,12 @@
-package xml;
+package org.xml.harness;
 
-import io.Writer;
+import org.xml.io.Writer;
 import org.xml.*;
-import structures.Elements;
+import org.xml.structures.Elements;
 
+import java.io.File;
 import java.io.FileWriter;
+import java.util.ArrayList;
 
 public class XMLHarness
 {
@@ -708,6 +710,212 @@ public class XMLHarness
             {
                 System.err.println(e);
             }
+        }
+    }
+
+    public static class Test008
+    {
+        public Test008()
+        {
+            try
+            {
+                Database database = new Database();
+
+                database.exists = "true";
+
+                database.context = Test008.class;
+
+                database.file = new File("C:\\location\\company.sql");
+
+                database.name = "company.sql";
+
+                database.selected = "true";
+
+                database.uri = "C:\\location\\company.sql";
+
+                database.tables.add("employees");
+
+                database.tables.add("human resources");
+
+                database.tables.add("expenses");
+
+                //
+
+                Document ldocument;
+
+                Element ldatabase, tables;
+
+                //
+
+                ldocument = new Document(new Root("database"));
+
+                //
+
+                ldocument.root.addAttribute(new Attribute("exists", database.exists));
+
+                ldocument.root.addAttribute(new Attribute("context", database.context.toString()));
+
+                ldocument.root.addAttribute(new Attribute("file", database.file.getCanonicalPath()));
+
+                ldocument.root.addAttribute(new Attribute("name", database.name));
+
+                ldocument.root.addAttribute(new Attribute("selected", database.selected));
+
+                ldocument.root.addAttribute(new Attribute("uri", database.uri));
+
+                //
+
+                ldocument.root.addElement(tables = new Element("tables"));
+
+                //
+
+                for(String string : database.tables)
+                {
+                    Element table;
+
+                    tables.addElement(table = new Element("table"));
+
+                    table.setId(new Attribute("n/a"));
+
+                    table.addAttribute(new Attribute("name", string));
+                }
+
+                //
+
+                Writer writer = new Writer(ldocument, "C:\\Users\\Mr. Max Rupplin\\Desktop\\xml\\output.xml");
+            }
+            catch (Exception e)
+            {
+                System.err.println(e);
+            }
+        }
+
+        public class Database
+        {
+            //public static Database reference;
+
+            //
+
+            public ArrayList<String> tables = new ArrayList<>();
+
+            public String selected;
+
+            public String exists;
+
+            public String name;
+
+            public String uri;
+
+            //public DatabaseWrit writ;
+
+            //public Parameter parameter;
+
+            public Class<?> context;
+
+            public File file;
+        }
+    }
+
+    public static class Test009
+    {
+        public Test009()
+        {
+            try
+            {
+                Database database = new Database();
+
+                database.exists = "true";
+
+                database.context = Test008.class;
+
+                database.file = new File("C:\\location\\company.sql");
+
+                database.name = "company.sql";
+
+                database.selected = "true";
+
+                database.uri = "C:\\location\\company.sql";
+
+                database.tables.add("employees");
+
+                database.tables.add("income");
+
+                database.tables.add("expenses");
+
+                //
+
+                Document ldocument;
+
+                Element ldatabase, tables;
+
+                //
+
+                ldocument = new Document(new Root("database"));
+
+                //
+
+                ldocument.root.addAttribute(new Attribute("exists", database.exists));
+
+                ldocument.root.addAttribute(new Attribute("context", database.context.toString()));
+
+                ldocument.root.addAttribute(new Attribute("file", database.file.getCanonicalPath()));
+
+                ldocument.root.addAttribute(new Attribute("name", database.name));
+
+                ldocument.root.addAttribute(new Attribute("selected", database.selected));
+
+                ldocument.root.addAttribute(new Attribute("uri", database.uri));
+
+                //
+
+                ldocument.root.addElement(tables = new Element("tables"));
+
+                //
+
+                for(String string : database.tables)
+                {
+                    Element table;
+
+                    tables.addElement(table = new Element("table"));
+
+                    table.setId(new Attribute("n/a"));
+
+                    table.addAttribute(new Attribute("name", string));
+                }
+
+                //
+
+                Writer writer = new Writer(ldocument, "C:\\Users\\Mr. Max Rupplin\\Desktop\\xml\\output.xml");
+            }
+            catch (Exception e)
+            {
+                System.err.println(e);
+            }
+        }
+
+        public class Database
+        {
+            //public static Database reference;
+
+            //
+
+            public ArrayList<String> tables = new ArrayList<>();
+
+            public String selected;
+
+            public String exists;
+
+            public String name;
+
+            public String uri;
+
+            //public DatabaseWrit writ;
+
+            //public Parameter parameter;
+
+            public Class<?> context;
+
+            public File file;
         }
     }
 }

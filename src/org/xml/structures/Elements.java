@@ -1,6 +1,5 @@
-package structures;
+package org.xml.structures;
 
-import org.xml.Attribute;
 import org.xml.Element;
 
 import java.util.ArrayList;

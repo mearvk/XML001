@@ -1,7 +1,7 @@
 package org.xml;
 
-import structures.Attributes;
-import structures.Elements;
+import org.xml.structures.Attributes;
+import org.xml.structures.Elements;
 
 public class Element extends Node
 {

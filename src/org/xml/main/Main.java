@@ -1,6 +1,6 @@
-package main;
+package org.xml.main;
 
-import xml.XMLHarness;
+import org.xml.harness.XMLHarness;
 
 public class Main
 {
@@ -19,5 +19,10 @@ public class Main
         XMLHarness.Test006 test006 = new XMLHarness.Test006();
 
         XMLHarness.Test007 test007 = new XMLHarness.Test007();
+
+        XMLHarness.Test008 test008 = new XMLHarness.Test008();
+
+        XMLHarness.Test009 test009 = new XMLHarness.Test009();
     }
 }
+

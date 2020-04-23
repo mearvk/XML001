@@ -1,7 +1,7 @@
 package org.xml;
 
-import structures.Attributes;
-import structures.DocumentAttributes;
+import org.xml.structures.Attributes;
+import org.xml.structures.DocumentAttributes;
 
 public class Document
 {
@@ -73,8 +73,6 @@ public class Document
             string = "<"+element.name;
         }
 
-        //string = "<"+element.name;
-
         if(element.hasAttributes())
         {
             for(int i=0; i<element.attributes.size(); i++)
@@ -119,42 +117,3 @@ public class Document
         else return string + indent(breadth-1) + "</"+element.name +">\n";
     }
 }
-
-/*
-    protected String traverseXML(Element element, String string, Integer breadth)
-    {
-        breadth++;
-
-        string = "<"+element.name; //namespace here
-
-        if(element.hasAttributes())
-        {
-            for(int i=0; i<element.attributes.size(); i++)
-            {
-                Attribute attribute;
-
-                attribute = element.attributes.get(i);
-
-                string = string + " "+attribute.name +"=\""+attribute.value+"\"";
-            }
-        }
-
-        string = string + ">\n";
-
-        if(element.hasTextnode())
-        {
-            string = string + indent(breadth) + element.textnode.value+"\n";
-        }
-
-        if(element.hasChildren())
-        {
-            for(int i=0; i<element.children.size(); i++)
-            {
-                string = string + indent(breadth) + traverseXML(element.children.get(i), element.name, breadth);
-            }
-        }
-
-        return string + indent(breadth-1) + "</"+element.name +">\n";
-    }
-
- */

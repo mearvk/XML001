@@ -1,4 +1,4 @@
-package io;
+package org.xml.io;
 
 import org.xml.Document;
 

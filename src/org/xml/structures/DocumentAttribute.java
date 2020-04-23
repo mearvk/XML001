@@ -1,4 +1,4 @@
-package structures;
+package org.xml.structures;
 
 public class DocumentAttribute
 {
