@@ -1,12 +1,14 @@
 package org.xml.harness;
 
-import org.xml.io.Writer;
 import org.xml.*;
+import org.xml.database.*;
+import org.xml.io.Writer;
 import org.xml.structures.Elements;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
+
 
 public class XMLHarness
 {
@@ -545,9 +547,12 @@ public class XMLHarness
         }
     }
 
-    public static class Test006 {
-        public Test006() {
-            try {
+    public static class Test006
+    {
+        public Test006()
+        {
+            try
+            {
                 Document document;
 
                 Element users;
@@ -826,15 +831,15 @@ public class XMLHarness
 
                 database.exists = "true";
 
-                database.context = Test008.class;
+                database.context = Test009.class;
 
-                database.file = new File("C:\\location\\company.sql");
+                database.file = new File("C:\\location\\09\\company.sql");
 
                 database.name = "company.sql";
 
                 database.selected = "true";
 
-                database.uri = "C:\\location\\company.sql";
+                database.uri = "C:\\location\\09\\company.sql";
 
                 database.tables.add("employees");
 
@@ -872,15 +877,15 @@ public class XMLHarness
 
                 //
 
-                for(String string : database.tables)
+                for(int i=0; i<database.tables.size(); i++)
                 {
                     Element table;
 
                     tables.addElement(table = new Element("table"));
 
-                    table.setId(new Attribute("n/a"));
+                    table.setId(new Attribute(String.valueOf(database.tables.get(i))));
 
-                    table.addAttribute(new Attribute("name", string));
+                    table.addAttribute(new Attribute("name", database.tables.get(i)));
                 }
 
                 //
@@ -895,10 +900,6 @@ public class XMLHarness
 
         public class Database
         {
-            //public static Database reference;
-
-            //
-
             public ArrayList<String> tables = new ArrayList<>();
 
             public String selected;
@@ -909,14 +910,224 @@ public class XMLHarness
 
             public String uri;
 
-            //public DatabaseWrit writ;
-
-            //public Parameter parameter;
-
             public Class<?> context;
 
             public File file;
         }
     }
+
+    public static class Test010
+    {
+        public Test010()
+        {
+            try
+            {
+                Database database = new Database();
+
+                database.exists = "true";
+
+                database.context = Test010.class;
+
+                database.file = new File("C:\\location\\10\\company.sql");
+
+                database.name = "company.sql";
+
+                database.selected = "true";
+
+                database.uri = "C:\\location\\10\\company.sql";
+
+                //
+
+                Document xml_document;
+
+                Element xml_database, xml_tables, xml_columns, xml_rows;
+
+                //
+
+                xml_document = new Document(new Root("database"));
+
+                //
+
+                xml_document.root.addAttribute(new Attribute("exists", database.exists));
+
+                xml_document.root.addAttribute(new Attribute("context", database.context.toString()));
+
+                xml_document.root.addAttribute(new Attribute("file", database.file.getCanonicalPath()));
+
+                xml_document.root.addAttribute(new Attribute("name", database.name));
+
+                xml_document.root.addAttribute(new Attribute("selected", database.selected));
+
+                xml_document.root.addAttribute(new Attribute("uri", database.uri));
+
+                //
+
+                xml_document.root.addElement(xml_tables = new Element("tables"));
+
+                //
+
+                for(int i=0; i<database.tables.size(); i++)
+                {
+                    Element xml_table;
+
+                    xml_tables.addElement(xml_table = new Element("table"));
+
+                    xml_table.addAttribute(new Attribute("id", String.valueOf(i+1)));
+
+                    xml_table.addAttribute(new Attribute("name", database.tables.get(i).name));
+
+                    xml_table.addElement(xml_columns = new Element("columns"));
+
+                    xml_table.addElement(xml_rows = new Element("rows"));
+
+                    //
+
+                    Columns database_columns = database.tables.get(i).columns;
+
+                    for(int j=0; j<database_columns.size(); j++)
+                    {
+                        Element column;
+
+                        xml_columns.addElement(column = new Element("column"));
+
+                        column.addAttribute(new Attribute("id", database_columns.get(j).id));
+
+                        column.addAttribute(new Attribute("name", database_columns.get(j).name));
+                    }
+
+                    //
+
+                    Rows database_rows = database.tables.get(i).rows;
+
+                    //
+
+                    for(int j=0; j<database_rows.size(); j++) /* Add the row to table's rows */
+                    {
+                        Element xml_row;
+
+                        xml_rows.addElement(xml_row = new Element("row"));
+
+                        xml_row.addAttribute(new Attribute("id", database_rows.get(j).id));
+
+                        xml_row.addAttribute(new Attribute("column", database_rows.get(j).column));
+
+                        xml_row.addAttribute(new Attribute("value", database_rows.get(j).value));
+
+                        //
+
+                        Element xml_item;
+
+                        for(int k=0; k<database_rows.get(j).items.size(); k++) /* Add the items to each row */
+                        {
+                            xml_row.addElement(xml_item = new Element("item"));
+
+                            xml_item.addAttribute(new Attribute("id", "$"));
+
+                            xml_item.addAttribute(new Attribute("column", "$"));
+
+                            xml_item.addAttribute(new Attribute("value", "$"));
+                        }
+                    }
+                }
+
+                //
+
+                Writer writer = new Writer(xml_document, "C:\\Users\\Mr. Max Rupplin\\Desktop\\xml\\output.xml");
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+
+        public class Database
+        {
+            public Tables tables = new Tables();
+
+            public String selected;
+
+            public String exists;
+
+            public String name;
+
+            public String uri;
+
+            public Class<?> context;
+
+            public File file;
+
+            //
+
+            public Database()
+            {
+                this.tables.add(new Table("employees"));
+
+                this.tables.add(new Table("income"));
+
+                this.tables.add(new Table("expense"));
+
+
+                //
+
+                Table table01 = this.tables.get(0);
+
+                Table table02 = this.tables.get(1);
+
+                Table table03 = this.tables.get(2);
+
+                //
+
+                table01.columns.add(new Column("000", "id"));
+
+                table01.columns.add(new Column("001", "fname"));
+
+                table01.columns.add(new Column("002", "lname"));
+
+                //
+
+                table02.columns.add(new Column("000", "id"));
+
+                table02.columns.add(new Column("001", "gross"));
+
+                table02.columns.add(new Column("002", "net"));
+
+                //
+
+                table03.columns.add(new Column("000", "id"));
+
+                table03.columns.add(new Column("001", "gross"));
+
+                table03.columns.add(new Column("002", "net"));
+
+                //
+
+
+                Table table;
+
+                Row row;
+
+                Item item;
+
+                //
+
+
+                for(int i=0; i<this.tables.size(); i++) // add items to rows
+                {
+                    table = this.tables.get(i);
+
+                    for(int j=0; j<3; j++) /* WE NEED TABLE_ROWS.SIZE = 3 AHEAD OF POPULATION */
+                    {
+                        table.rows.add(row = new Row("", "",""));
+
+                        for(int k=0; k<3; k++) /* WE NEED ROWS_ITEMS.SIZE = 3 AHEAD OF POPULATION */
+                        {
+                            row.add(new Item(String.valueOf(k),"$","$"));
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 }
 
