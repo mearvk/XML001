@@ -17,5 +17,14 @@ public class Table
     public Table(String name)
     {
         this.name = name;
+
+        this.size = 0;
+    }
+
+    public Table(String name, Integer size)
+    {
+        this.name = name;
+
+        this.size = size;
     }
 }

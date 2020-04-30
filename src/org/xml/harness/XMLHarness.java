@@ -1129,5 +1129,219 @@ public class XMLHarness
         }
     }
 
+    public static class Test011
+    {
+        public Test011()
+        {
+            try
+            {
+                Database database = new Database();
+
+                database.exists = "true";
+
+                database.context = Test010.class;
+
+                database.file = new File("C:\\location\\10\\company.sql");
+
+                database.name = "company.sql";
+
+                database.selected = "true";
+
+                database.uri = "C:\\location\\10\\company.sql";
+
+                //
+
+                Document xml_document;
+
+                Element xml_database, xml_tables, xml_columns, xml_rows;
+
+                //
+
+                xml_document = new Document(new Root("database"));
+
+                //
+
+                xml_document.root.addAttribute(new Attribute("exists", database.exists));
+
+                xml_document.root.addAttribute(new Attribute("context", database.context.toString()));
+
+                xml_document.root.addAttribute(new Attribute("file", database.file.getCanonicalPath()));
+
+                xml_document.root.addAttribute(new Attribute("name", database.name));
+
+                xml_document.root.addAttribute(new Attribute("selected", database.selected));
+
+                xml_document.root.addAttribute(new Attribute("uri", database.uri));
+
+                //
+
+                xml_document.root.addElement(xml_tables = new Element("tables"));
+
+                //
+
+                for(int i=0; i<database.tables.size(); i++)
+                {
+                    Element xml_table;
+
+                    xml_tables.addElement(xml_table = new Element("table"));
+
+                    xml_table.addAttribute(new Attribute("id", String.valueOf(i+1)));
+
+                    xml_table.addAttribute(new Attribute("name", database.tables.get(i).name));
+
+                    xml_table.addElement(xml_columns = new Element("columns"));
+
+                    xml_table.addElement(xml_rows = new Element("rows"));
+
+                    //
+
+                    Columns database_columns = database.tables.get(i).columns;
+
+                    for(int j=0; j<database_columns.size(); j++)
+                    {
+                        Element column;
+
+                        xml_columns.addElement(column = new Element("column"));
+
+                        column.addAttribute(new Attribute("id", database_columns.get(j).id));
+
+                        column.addAttribute(new Attribute("name", database_columns.get(j).name));
+                    }
+
+                    //
+
+                    Rows database_rows = database.tables.get(i).rows;
+
+                    //
+
+                    for(int j=0; j<database_rows.size(); j++) /* Add the row to table's rows */
+                    {
+                        Element xml_row;
+
+                        xml_rows.addElement(xml_row = new Element("row"));
+
+                        xml_row.addAttribute(new Attribute("id", database_rows.get(j).id));
+
+                        xml_row.addAttribute(new Attribute("column", database_rows.get(j).column));
+
+                        xml_row.addAttribute(new Attribute("value", database_rows.get(j).value));
+
+                        //
+
+                        Element xml_item;
+
+                        for(int k=0; k<database_rows.get(j).items.size(); k++) /* Add the items to each row */
+                        {
+                            xml_row.addElement(xml_item = new Element("item"));
+
+                            xml_item.addAttribute(new Attribute("id", "$"));
+
+                            xml_item.addAttribute(new Attribute("column", "$"));
+
+                            xml_item.addAttribute(new Attribute("value", "$"));
+                        }
+                    }
+                }
+
+                //
+
+                Writer writer = new Writer(xml_document, "C:\\Users\\Mr. Max Rupplin\\Desktop\\xml\\output.xml");
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+
+        public class Database
+        {
+            public Tables tables = new Tables();
+
+            public String selected;
+
+            public String exists;
+
+            public String name;
+
+            public String uri;
+
+            public Class<?> context;
+
+            public File file;
+
+            //
+
+            public Database()
+            {
+                //
+
+                this.tables.add(new Table("employees", 3));
+
+                this.tables.add(new Table("income", 3));
+
+                this.tables.add(new Table("expense",3));
+
+                //
+
+                Table table00 = this.tables.get(0);
+
+                Table table01 = this.tables.get(1);
+
+                Table table02 = this.tables.get(2);
+
+                //
+
+                table00.columns.add(new Column("c00", "id", ColumnType.INTEGER));
+
+                table00.columns.add(new Column("c01", "first_name", ColumnType.VARCHAR));
+
+                table00.columns.add(new Column("c02", "last_name", ColumnType.VARCHAR));
+
+                //
+
+                table01.columns.add(new Column("c00", "id", ColumnType.INTEGER));
+
+                table01.columns.add(new Column("c01", "gross_income", ColumnType.FLOAT));
+
+                table01.columns.add(new Column("c02", "net_income", ColumnType.FLOAT));
+
+                //
+
+                table02.columns.add(new Column("c00", "id", ColumnType.INTEGER));
+
+                table02.columns.add(new Column("c01", "gross_expense", ColumnType.FLOAT));
+
+                table02.columns.add(new Column("c02", "net_expense", ColumnType.FLOAT));
+
+                //
+
+
+                Table table;
+
+                Row row;
+
+                Item item;
+
+                //
+
+
+                for(int i=0; i<this.tables.size(); i++) // add items to rows
+                {
+                    table = this.tables.get(i);
+
+                    for(int j=0; j<3; j++) /* WE NEED TABLE_ROWS.SIZE = 3 AHEAD OF POPULATION */
+                    {
+                        table.rows.add(row = new Row("", "",""));
+
+                        for(int k=0; k<3; k++) /* WE NEED ROWS_ITEMS.SIZE = 3 AHEAD OF POPULATION */
+                        {
+                            row.add(new Item(String.valueOf(k),"$","$"));
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 }
 

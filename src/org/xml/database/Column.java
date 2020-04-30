@@ -6,10 +6,21 @@ public class Column
 
     public String id;
 
-    public Column(String id, String name)
+    public ColumnType type = new ColumnType();
+
+    public Column(final String id, final String name)
     {
         this.id = id;
 
         this.name = name;
+    }
+
+    public Column(final String id, final String name, final Integer type)
+    {
+        this.id = id;
+
+        this.name = name;
+
+        this.type.type = type;
     }
 }
