@@ -12,13 +12,27 @@ public class Row
 
     public String id;
 
+    public String index;
+
     //
 
-    public Row(String id, String column, String value)
+    public Row(String index)
+    {
+        this.index = index;
+    }
+
+    public Row(String index, String value)
+    {
+        this.index = index;
+
+        this.value = value;
+    }
+
+    public Row(String id, String index, String value)
     {
         this.id = id;
 
-        this.column = column;
+        this.index = index;
 
         this.value = value;
     }

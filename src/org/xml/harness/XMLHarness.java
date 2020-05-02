@@ -1220,11 +1220,11 @@ public class XMLHarness
 
                         xml_rows.addElement(xml_row = new Element("row"));
 
-                        xml_row.addAttribute(new Attribute("id", database_rows.get(j).id));
+                        //xml_row.addAttribute(new Attribute("id", database_rows.get(j).id));
 
                         xml_row.addAttribute(new Attribute("column", database_rows.get(j).column));
 
-                        xml_row.addAttribute(new Attribute("value", database_rows.get(j).value));
+                        //xml_row.addAttribute(new Attribute("value", database_rows.get(j).value));
 
                         //
 
@@ -1234,11 +1234,11 @@ public class XMLHarness
                         {
                             xml_row.addElement(xml_item = new Element("item"));
 
-                            xml_item.addAttribute(new Attribute("id", "$"));
+                            //xml_item.addAttribute(new Attribute("id", database_rows.get(j).items.get(k).id));
 
-                            xml_item.addAttribute(new Attribute("column", "$"));
+                            xml_item.addAttribute(new Attribute("column", database_rows.get(j).items.get(k).column));
 
-                            xml_item.addAttribute(new Attribute("value", "$"));
+                            //xml_item.addAttribute(new Attribute("value", database_rows.get(j).items.get(k).value));
                         }
                     }
                 }
@@ -1275,46 +1275,61 @@ public class XMLHarness
             {
                 //
 
-                this.tables.add(new Table("employees", 3));
+                this.tables.add(new Table("employees"));
 
-                this.tables.add(new Table("income", 3));
+                this.tables.add(new Table("income"));
 
-                this.tables.add(new Table("expense",3));
+                this.tables.add(new Table("expense"));
 
-                //
-
-                Table table00 = this.tables.get(0);
-
-                Table table01 = this.tables.get(1);
-
-                Table table02 = this.tables.get(2);
+                this.tables.add(new Table("stock"));
 
                 //
 
-                table00.columns.add(new Column("c00", "id", ColumnType.INTEGER));
+                Table table1 = this.tables.get(0);
 
-                table00.columns.add(new Column("c01", "first_name", ColumnType.VARCHAR));
+                Table table2 = this.tables.get(1);
 
-                table00.columns.add(new Column("c02", "last_name", ColumnType.VARCHAR));
+                Table table3 = this.tables.get(2);
 
-                //
-
-                table01.columns.add(new Column("c00", "id", ColumnType.INTEGER));
-
-                table01.columns.add(new Column("c01", "gross_income", ColumnType.FLOAT));
-
-                table01.columns.add(new Column("c02", "net_income", ColumnType.FLOAT));
+                Table table4 = this.tables.get(3);
 
                 //
 
-                table02.columns.add(new Column("c00", "id", ColumnType.INTEGER));
+                table1.columns.add(new Column("0", "id", ColumnType.INTEGER));
 
-                table02.columns.add(new Column("c01", "gross_expense", ColumnType.FLOAT));
+                table1.columns.add(new Column("1", "first_name", ColumnType.VARCHAR));
 
-                table02.columns.add(new Column("c02", "net_expense", ColumnType.FLOAT));
+                table1.columns.add(new Column("2", "last_name", ColumnType.VARCHAR));
 
                 //
 
+                table2.columns.add(new Column("0", "id", ColumnType.INTEGER));
+
+                table2.columns.add(new Column("1", "gross_income", ColumnType.FLOAT));
+
+                table2.columns.add(new Column("2", "net_income", ColumnType.FLOAT));
+
+                //
+
+                table3.columns.add(new Column("0", "id", ColumnType.INTEGER));
+
+                table3.columns.add(new Column("1", "gross_expense", ColumnType.FLOAT));
+
+                table3.columns.add(new Column("2", "net_expense", ColumnType.FLOAT));
+
+                //
+
+                table4.columns.add(new Column("0","id", ColumnType.INTEGER));
+
+                table4.columns.add(new Column("1","description", ColumnType.INTEGER));
+
+                table4.columns.add(new Column("2","name", ColumnType.INTEGER));
+
+                table4.columns.add(new Column("3","quantity", ColumnType.INTEGER));
+
+                table4.columns.add(new Column("4","supplier", ColumnType.INTEGER));
+
+                //
 
                 Table table;
 
@@ -1324,24 +1339,27 @@ public class XMLHarness
 
                 //
 
-
-                for(int i=0; i<this.tables.size(); i++) // add items to rows
+                for(int i=0; i<this.tables.size(); i++)
                 {
                     table = this.tables.get(i);
 
-                    for(int j=0; j<3; j++) /* WE NEED TABLE_ROWS.SIZE = 3 AHEAD OF POPULATION */
+                    for(int j=0; j<2*table.columns.size(); j++)
                     {
-                        table.rows.add(row = new Row("", "",""));
+                        table.rows.add(row = new Row(String.valueOf(j)));   //add rows first
+                    }
 
-                        for(int k=0; k<3; k++) /* WE NEED ROWS_ITEMS.SIZE = 3 AHEAD OF POPULATION */
+                    for(int j=0; j<table.rows.size(); j++)                  //row size
+                    {
+                        row = table.rows.get(j);
+
+                        for(int k=0; k<table.columns.size(); k++)           //column width
                         {
-                            row.add(new Item(String.valueOf(k),"$","$"));
+                            row.add(new Item(String.valueOf(k)));           //add items
                         }
                     }
                 }
             }
         }
     }
-
 }
 

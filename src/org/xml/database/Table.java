@@ -8,23 +8,16 @@ public class Table
 
     public Rows rows = new Rows();
 
-    public int size;
-
     public String name;
+
+    public Integer column_count;
+
+    public Integer row_count;
 
     public ArrayList<String> values = new ArrayList<>();
 
     public Table(String name)
     {
         this.name = name;
-
-        this.size = 0;
-    }
-
-    public Table(String name, Integer size)
-    {
-        this.name = name;
-
-        this.size = size;
     }
 }

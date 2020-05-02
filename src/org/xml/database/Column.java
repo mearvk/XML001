@@ -23,4 +23,13 @@ public class Column
 
         this.type.type = type;
     }
+
+    public Column(final String id, final String name, final String description, final Integer type)
+    {
+        this.id = id;
+
+        this.name = name;
+
+        this.type.type = type;
+    }
 }

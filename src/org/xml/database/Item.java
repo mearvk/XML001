@@ -14,6 +14,18 @@ public class Item
 
     //
 
+    public Item(String column)
+    {
+        this.column = column;
+    }
+
+    public Item(String column, String value)
+    {
+        this.column = column;
+
+        this.value = value;
+    }
+
     public Item(String id, String column, String value)
     {
         this.id = id;
