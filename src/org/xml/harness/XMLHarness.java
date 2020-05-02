@@ -1220,11 +1220,7 @@ public class XMLHarness
 
                         xml_rows.addElement(xml_row = new Element("row"));
 
-                        //xml_row.addAttribute(new Attribute("id", database_rows.get(j).id));
-
-                        xml_row.addAttribute(new Attribute("column", database_rows.get(j).column));
-
-                        //xml_row.addAttribute(new Attribute("value", database_rows.get(j).value));
+                        xml_row.addAttribute(new Attribute("index", database_rows.get(j).index));
 
                         //
 
@@ -1234,11 +1230,7 @@ public class XMLHarness
                         {
                             xml_row.addElement(xml_item = new Element("item"));
 
-                            //xml_item.addAttribute(new Attribute("id", database_rows.get(j).items.get(k).id));
-
                             xml_item.addAttribute(new Attribute("column", database_rows.get(j).items.get(k).column));
-
-                            //xml_item.addAttribute(new Attribute("value", database_rows.get(j).items.get(k).value));
                         }
                     }
                 }
@@ -1343,18 +1335,18 @@ public class XMLHarness
                 {
                     table = this.tables.get(i);
 
-                    for(int j=0; j<2*table.columns.size(); j++)
+                    for(int j=0; j<table.columns.size(); j++)               //add here multiplier * modulus n
                     {
-                        table.rows.add(row = new Row(String.valueOf(j)));   //add rows first
+                        table.rows.add(row = new Row(String.valueOf(j)));
                     }
 
-                    for(int j=0; j<table.rows.size(); j++)                  //row size
+                    for(int j=0; j<table.rows.size(); j++)
                     {
                         row = table.rows.get(j);
 
-                        for(int k=0; k<table.columns.size(); k++)           //column width
+                        for(int k=0; k<table.columns.size(); k++)
                         {
-                            row.add(new Item(String.valueOf(k)));           //add items
+                            row.add(new Item(String.valueOf(k)));
                         }
                     }
                 }
