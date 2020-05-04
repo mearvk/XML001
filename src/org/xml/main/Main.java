@@ -30,9 +30,11 @@ public class Main
 
         XMLHarness.Test011 test011 = new XMLHarness.Test011();
 
+        XMLHarness.Test012 test012 = new XMLHarness.Test012();
+
         */
 
-        XMLHarness.Test012 test012 = new XMLHarness.Test012();
+        XMLHarness.Test013 test013 = new XMLHarness.Test013();
     }
 }
 

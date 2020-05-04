@@ -1341,7 +1341,7 @@ public class XMLHarness
                 {
                     table = this.tables.get(i);
 
-                    for(int j=0; j<table.columns.size(); j++)               //add here multiplier * modulus n
+                    for(int j=0; j<1*table.columns.size(); j++)               //add here multiplier * modulus n
                     {
                         table.rows.add(row = new Row(String.valueOf(j)));
                     }
@@ -1366,7 +1366,7 @@ public class XMLHarness
         {
             try
             {
-                Element child01, child02, child03, child04, child05, child06;
+                Element child01, child02, child03, child04, child05, child06, child07, actor01, actor02;
 
                 //
 
@@ -1422,21 +1422,45 @@ public class XMLHarness
 
                 //
 
+                document.root.addElement(child07 = new Element("child"));
+
+                child07.addAttribute(new Attribute("id", "07"));
+
+                child07.addTextnode(new Textnode("Mr. Jon Doa"));
+
+                //
+
+                document.root.addElement(actor01 = new Element("actor"));
+
+                actor01.addAttribute(new Attribute("id", "08"));
+
+                actor01.addTextnode(new Textnode("Mr. Johnny Depp"));
+
+                //
+
+                document.root.addElement(actor02 = new Element("actor"));
+
+                actor02.addAttribute(new Attribute("id", "09"));
+
+                actor02.addTextnode(new Textnode("Mr. John Philbin"));
+
+                //
+
                 XPath.system.evaluate(document, NodeList.class, Subtests.Test012a.class);
 
-                XPath.system.println(StaticResults.Result01.class);
+                XPath.system.print(StaticResult.Result01.class);
 
                 //
 
                 XPath.system.evaluate(document, NodeList.class, Subtests.Test012b.class);
 
-                XPath.system.println(StaticResults.Result02.class);
+                XPath.system.print(StaticResult.Result02.class);
 
                 //
 
                 XPath.system.evaluate(document, Number.class, Subtests.Test012c.class);
 
-                XPath.system.println(StaticResults.Result03.class);
+                XPath.system.print(StaticResult.Result03.class);
             }
             catch (Exception e)
             {
@@ -1479,19 +1503,179 @@ public class XMLHarness
             }
         }
 
-        public static class StaticResults
+        public static class StaticResult
         {
-            public static class Result01 extends StaticResults
+            public static class Result01 extends StaticResult
             {
 
             }
 
-            public static class Result02 extends StaticResults
+            public static class Result02 extends StaticResult
             {
 
             }
 
-            public static class Result03 extends StaticResults
+            public static class Result03 extends StaticResult
+            {
+
+            }
+        }
+    }
+
+    public static class Test013
+    {
+        public Test013()
+        {
+            try
+            {
+                Element child01, child02, child03, child04, child05, child06, child07, actor01, actor02;
+
+                //
+
+                Document document = new Document(new Root("children"));
+
+                //
+
+                document.root.addElement(child01 = new Element("child"));
+
+                child01.addAttribute(new Attribute("id", "01"));
+
+                child01.addTextnode(new Textnode("Mr. Johnathan Doe"));
+
+                //
+
+                document.root.addElement(child02 = new Element("child"));
+
+                child02.addAttribute(new Attribute("id", "02"));
+
+                child02.addTextnode(new Textnode("Mr. John Doe"));
+
+                //
+
+                document.root.addElement(child03 = new Element("child"));
+
+                child03.addAttribute(new Attribute("id", "03"));
+
+                child03.addTextnode(new Textnode("Mr. Johnny Doe"));
+
+                //
+
+                document.root.addElement(child04 = new Element("child"));
+
+                child04.addAttribute(new Attribute("id", "04"));
+
+                child04.addTextnode(new Textnode("Mr. Johann Doe"));
+
+                //
+
+                document.root.addElement(child05 = new Element("child"));
+
+                child05.addAttribute(new Attribute("id", "05"));
+
+                child05.addTextnode(new Textnode("Mr. Joe Doe"));
+
+                //
+
+                document.root.addElement(child06 = new Element("child"));
+
+                child06.addAttribute(new Attribute("id", "06"));
+
+                child06.addTextnode(new Textnode("Mr. Jon Dough"));
+
+                //
+
+                document.root.addElement(child07 = new Element("child"));
+
+                child07.addAttribute(new Attribute("id", "07"));
+
+                child07.addTextnode(new Textnode("Mr. Jon Doa"));
+
+                //
+
+                document.root.addElement(actor01 = new Element("actor"));
+
+                actor01.addAttribute(new Attribute("id", "08"));
+
+                actor01.addTextnode(new Textnode("Mr. Johnny Depp"));
+
+                //
+
+                document.root.addElement(actor02 = new Element("actor"));
+
+                actor02.addAttribute(new Attribute("id", "09"));
+
+                actor02.addTextnode(new Textnode("Mr. John Philbin"));
+
+                //
+
+                XPath.system.evaluate(document, NodeList.class, Subtests.Test013a.class);
+
+                XPath.system.print(StaticResult.Result01.class);
+
+                //
+
+                XPath.system.evaluate(document, NodeList.class, Subtests.Test013b.class);
+
+                XPath.system.print(StaticResult.Result02.class);
+
+                //
+
+                XPath.system.evaluate(document, Number.class, Subtests.Test013c.class);
+
+                XPath.system.print(StaticResult.Result03.class);
+            }
+            catch (Exception e)
+            {
+                System.out.println(e);
+            }
+        }
+
+        public static class DatabaseConstants
+        {
+            public static final String xpath_input_01 = "/children/actor";
+
+            public static final String xpath_result_01 = "//evaluate@result{0}";
+
+            public static final String xpath_input_02 = "//actor";
+
+            public static final String xpath_result_02 = "//evaluate@result{1}";
+
+            public static final String xpath_input_03 = "count(//actor)";
+
+            public static final String xpath_result_03 = "//evaluate@result{2}";
+        }
+
+        public static class Subtests
+        {
+            public static class Test013a
+            {
+
+            }
+
+            public static class Test013b
+            {
+
+            }
+
+            public static class Test013c
+            {
+
+            }
+        }
+
+        public static class StaticResult
+        {
+            public static class Result01 extends StaticResult
+            {
+
+            }
+
+            public static class Result02 extends StaticResult
+            {
+
+            }
+
+            public static class Result03 extends StaticResult
             {
 
             }

@@ -7,6 +7,8 @@
       <w>lastname</w>
       <w>lname</w>
       <w>occup</w>
+      <w>philbin</w>
+      <w>textnode</w>
     </words>
   </dictionary>
 </component>
