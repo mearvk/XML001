@@ -1448,7 +1448,7 @@ public class XMLHarness
 
             public static final String xpath_input_02 = "//child";
 
-            public static final String xpath_result_02 = "//evaluate@result{1}";
+            public static final String xpath_result_02 = "//evaluate@result{1}";;
         }
 
         public static class Subtests
