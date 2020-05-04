@@ -1499,3 +1499,87 @@ public class XMLHarness
     }
 }
 
+/*
+<children>
+	<child id="01">
+		Mr. Johnathan Doe
+	</child>
+	<child id="02">
+		Mr. John Doe
+	</child>
+	<child id="03">
+		Mr. Johnny Doe
+	</child>
+	<child id="04">
+		Mr. Johann Doe
+	</child>
+	<child id="05">
+		Mr. Joe Doe
+	</child>
+	<child id="06">
+		Mr. Jon Dough
+	</child>
+</children>
+
+Mr. Johnathan Doe
+Mr. John Doe
+Mr. Johnny Doe
+Mr. Johann Doe
+Mr. Joe Doe
+Mr. Jon Dough
+
+<children>
+	<child id="01">
+		Mr. Johnathan Doe
+	</child>
+	<child id="02">
+		Mr. John Doe
+	</child>
+	<child id="03">
+		Mr. Johnny Doe
+	</child>
+	<child id="04">
+		Mr. Johann Doe
+	</child>
+	<child id="05">
+		Mr. Joe Doe
+	</child>
+	<child id="06">
+		Mr. Jon Dough
+	</child>
+</children>
+
+Mr. Johnathan Doe
+Mr. John Doe
+Mr. Johnny Doe
+Mr. Johann Doe
+Mr. Joe Doe
+Mr. Jon Dough
+
+<children>
+	<child id="01">
+		Mr. Johnathan Doe
+	</child>
+	<child id="02">
+		Mr. John Doe
+	</child>
+	<child id="03">
+		Mr. Johnny Doe
+	</child>
+	<child id="04">
+		Mr. Johann Doe
+	</child>
+	<child id="05">
+		Mr. Joe Doe
+	</child>
+	<child id="06">
+		Mr. Jon Dough
+	</child>
+</children>
+
+6.0
+
+
+Process finished with exit code 0
+
+ */
