@@ -1,9 +1,11 @@
 package org.xml.harness;
 
+import org.w3c.dom.NodeList;
 import org.xml.*;
 import org.xml.database.*;
 import org.xml.io.Writer;
 import org.xml.structures.Elements;
+import org.xpath.XPath;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -1133,6 +1135,12 @@ public class XMLHarness
     {
         public Test011()
         {
+            /*
+
+            Add <xml version="1.0" type="utf-8"> to DOM document
+
+            */
+
             try
             {
                 Database database = new Database();
@@ -1234,8 +1242,6 @@ public class XMLHarness
                         }
                     }
                 }
-
-                //
 
                 Writer writer = new Writer(xml_document, "C:\\Users\\Mr. Max Rupplin\\Desktop\\xml\\output.xml");
             }
@@ -1350,6 +1356,124 @@ public class XMLHarness
                         }
                     }
                 }
+            }
+        }
+    }
+
+    public static class Test012
+    {
+        public Test012()
+        {
+            try
+            {
+                Element child01, child02, child03, child04, child05, child06;
+
+                //
+
+                Document document = new Document(new Root("children"));
+
+                //
+
+                document.root.addElement(child01 = new Element("child"));
+
+                child01.addAttribute(new Attribute("id", "01"));
+
+                child01.addTextnode(new Textnode("Mr. Johnathan Doe"));
+
+                //
+
+                document.root.addElement(child02 = new Element("child"));
+
+                child02.addAttribute(new Attribute("id", "02"));
+
+                child02.addTextnode(new Textnode("Mr. John Doe"));
+
+                //
+
+                document.root.addElement(child03 = new Element("child"));
+
+                child03.addAttribute(new Attribute("id", "03"));
+
+                child03.addTextnode(new Textnode("Mr. Johnny Doe"));
+
+                //
+
+                document.root.addElement(child04 = new Element("child"));
+
+                child04.addAttribute(new Attribute("id", "04"));
+
+                child04.addTextnode(new Textnode("Mr. Johann Doe"));
+
+                //
+
+                document.root.addElement(child05 = new Element("child"));
+
+                child05.addAttribute(new Attribute("id", "05"));
+
+                child05.addTextnode(new Textnode("Mr. Joe Doe"));
+
+                //
+
+                document.root.addElement(child06 = new Element("child"));
+
+                child06.addAttribute(new Attribute("id", "06"));
+
+                child06.addTextnode(new Textnode("Mr. Jon Dough"));
+
+                //
+
+                XPath.system.evaluate(document, NodeList.class, Subtests.Test012a.class);
+
+                XPath.system.println(StaticResults.Result01.class);
+
+                //
+
+                XPath.system.evaluate(document, NodeList.class, Subtests.Test012b.class);
+
+                XPath.system.println(StaticResults.Result02.class);
+            }
+            catch (Exception e)
+            {
+                System.out.println(e);
+            }
+        }
+
+        public static class DatabaseConstants
+        {
+            public static final String uri = "C:\\Users\\Mr. Max Rupplin\\Desktop\\xml";
+
+            public static final String xpath_input_01 = "/children/child";
+
+            public static final String xpath_result_01 = "//evaluate@result{0}";
+
+            public static final String xpath_input_02 = "//child";
+
+            public static final String xpath_result_02 = "//evaluate@result{1}";
+        }
+
+        public static class Subtests
+        {
+            public static class Test012a
+            {
+
+            }
+
+            public static class Test012b
+            {
+
+            }
+        }
+
+        public static class StaticResults
+        {
+            public static class Result01 extends StaticResults
+            {
+
+            }
+
+            public static class Result02 extends StaticResults
+            {
+
             }
         }
     }
