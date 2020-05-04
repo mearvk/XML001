@@ -1431,6 +1431,12 @@ public class XMLHarness
                 XPath.system.evaluate(document, NodeList.class, Subtests.Test012b.class);
 
                 XPath.system.println(StaticResults.Result02.class);
+
+                //
+
+                XPath.system.evaluate(document, Number.class, Subtests.Test012c.class);
+
+                XPath.system.println(StaticResults.Result03.class);
             }
             catch (Exception e)
             {
@@ -1448,7 +1454,11 @@ public class XMLHarness
 
             public static final String xpath_input_02 = "//child";
 
-            public static final String xpath_result_02 = "//evaluate@result{1}";;
+            public static final String xpath_result_02 = "//evaluate@result{1}";
+
+            public static final String xpath_input_03 = "count(//child)";
+
+            public static final String xpath_result_03 = "//evaluate@result{2}";
         }
 
         public static class Subtests
@@ -1462,6 +1472,11 @@ public class XMLHarness
             {
 
             }
+
+            public static class Test012c
+            {
+
+            }
         }
 
         public static class StaticResults
@@ -1472,6 +1487,11 @@ public class XMLHarness
             }
 
             public static class Result02 extends StaticResults
+            {
+
+            }
+
+            public static class Result03 extends StaticResults
             {
 
             }

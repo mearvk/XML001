@@ -95,6 +95,21 @@ public class XPath
                     java.lang.System.err.println(e);
                 }
             }
+            else if(context.isAssignableFrom(XMLHarness.Test012.StaticResults.Result03.class))
+            {
+                try
+                {
+                    Double item = (Double)XPath.system.pull(XMLHarness.Test012.DatabaseConstants.xpath_result_03);
+
+                    java.lang.System.out.println(item);
+
+                    java.lang.System.out.println();
+                }
+                catch (Exception e)
+                {
+                    java.lang.System.err.println(e);
+                }
+            }
 
             return this;
         }
@@ -125,6 +140,7 @@ public class XPath
                     java.lang.System.err.println(e);
                 }
             }
+
             else if(context.isAssignableFrom(XMLHarness.Test012.Subtests.Test012b.class))
             {
                 try
@@ -142,6 +158,35 @@ public class XPath
                     else if(returntype.isAssignableFrom(String.class))
                     {
                         XPath.system.push(XMLHarness.Test012.DatabaseConstants.xpath_result_02, expression.evaluate(DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new ByteArrayInputStream(document.toXML().getBytes())), XPathConstants.STRING));
+                    }
+                }
+                catch(Exception e)
+                {
+                    java.lang.System.err.println(e);
+                }
+            }
+
+            else if(context.isAssignableFrom(XMLHarness.Test012.Subtests.Test012c.class))
+            {
+                try
+                {
+                    XPathExpression expression = this.xpath.compile(XMLHarness.Test012.DatabaseConstants.xpath_input_03);
+
+                    if(returntype.isAssignableFrom(NodeList.class))
+                    {
+                        XPath.system.push(XMLHarness.Test012.DatabaseConstants.xpath_result_03, expression.evaluate(DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new ByteArrayInputStream(document.toXML().getBytes())), XPathConstants.NODESET));
+                    }
+                    else if(returntype.isAssignableFrom(Node.class))
+                    {
+                        XPath.system.push(XMLHarness.Test012.DatabaseConstants.xpath_result_03, expression.evaluate(DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new ByteArrayInputStream(document.toXML().getBytes())), XPathConstants.NODE));
+                    }
+                    else if(returntype.isAssignableFrom(String.class))
+                    {
+                        XPath.system.push(XMLHarness.Test012.DatabaseConstants.xpath_result_03, expression.evaluate(DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new ByteArrayInputStream(document.toXML().getBytes())), XPathConstants.STRING));
+                    }
+                    else if(returntype.isAssignableFrom(Number.class))
+                    {
+                        XPath.system.push(XMLHarness.Test012.DatabaseConstants.xpath_result_03, expression.evaluate(DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new ByteArrayInputStream(document.toXML().getBytes())), XPathConstants.NUMBER));
                     }
                 }
                 catch(Exception e)
